@@ -51,12 +51,12 @@ func main() {
 	fmt.Println("Done.")
 }
 
-func Unikalnie_Znacheniya(sliceData []string{}){
-	for i := 0; i < len(sliceData); i++ {
+func Unikalnie_Znacheniya(SliceData []string{}){
+	for i := 0; i < len(SliceData); i++ {
 		k := 0
 		for g := 0; g < len(sliceData)-1; g++ {
 
-			if sliceData[i] == sliceData[g] {
+			if SliceData[i] == SliceData[g] {
 				k++
 			}
 		}
