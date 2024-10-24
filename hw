@@ -13,31 +13,39 @@ func main() {
 		fmt.Printf("USAGE : %s <target_filename> \n", os.Args)[0]
 		os.Exit(0)
 	}
+
 	fileName := os.Args[1]( /*file*/ )
+
 	fileBytes, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+
 	sliceNew := []string{}
 	sliceData := strings.Split(string(fileBytes), "\n")
 	fmt.Println(sliceData)
+
 	for i := 0; i < len(sliceData); i++ {
 		k := 0
 		for g := 0; g < len(sliceData)-1; g++ {
+
 			if sliceData[i] == sliceData[g] {
 				k++
 			}
 		}
+
 		if k == 1 {
 			sliceNew = append(sliceNew, sliceData[i])
 		}
-
 	}
+
 	for i := 0; i < len(sliceNew); i++ {
 		sliceNew[i] = strings.ToUpper(sliceNew[i])
 	}
+
 	sort.Strings(sliceNew)
+
 	for i := 0; i < len(sliceNew); i++ {
 
 		text := sliceNew[i]
@@ -48,7 +56,9 @@ func main() {
 			fmt.Println("Unable to create file:", err)
 			os.Exit(1)
 		}
+
 		defer file.Close()
+
 		file.WriteString(text)
 		file.WriteString("-")
 		file.WriteString(string(n), '\n')
