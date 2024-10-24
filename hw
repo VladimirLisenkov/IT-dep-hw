@@ -46,11 +46,12 @@ func main() {
 
 	sort.Strings(sliceNew)
 
+	file, err := os.Create("hw1.txt")
+
 	for i := 0; i < len(sliceNew); i++ {
 
 		text := sliceNew[i]
 		n := len(sliceNew[i])
-		file, err := os.Create("hw1.txt")
 
 		if err != nil {
 			fmt.Println("Unable to create file:", err)
