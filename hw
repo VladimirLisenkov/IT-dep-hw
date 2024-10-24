@@ -17,15 +17,41 @@ func main() {
 	fileName := os.Args[1]( /*file*/ )
 
 	fileBytes, err := ioutil.ReadFile(fileName)
+
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
+	
+	SliceData := strings.Split(string(fileBytes), "\n")
+	file.Close()
 
-	sliceNew := []string{}
-	sliceData := strings.Split(string(fileBytes), "\n")
-	fmt.Println(sliceData)
+	EmptySlice := SliceData.Unikalnie_Znacheniya()
+	EmptySlice:=EmptySlice.Upper()
+	sort.Strings(EmptySlice)
 
+	file, err := os.Create("hw1.txt")
+
+	for i := 0; i < len(EmptySlice); i++ {
+
+		text := EmptySlice[i]
+		n := len(EmptySlice[i])
+
+		if err != nil {
+			fmt.Println("Unable to create file:", err)
+			os.Exit(1)
+		}
+
+		file.WriteString(text)
+		file.WriteString("-")
+		file.WriteString(string(n), '\n')
+	}
+
+	defer file.Close()
+	fmt.Println("Done.")
+}
+
+func Unikalnie_Znacheniya(sliceData []string{}){
 	for i := 0; i < len(sliceData); i++ {
 		k := 0
 		for g := 0; g < len(sliceData)-1; g++ {
@@ -36,35 +62,15 @@ func main() {
 		}
 
 		if k == 1 {
-			sliceNew = append(sliceNew, sliceData[i])
+			EmptySlice = append(EmptySlice, sliceData[i])
 		}
 	}
+	return EmptySlice
+}
 
-	for i := 0; i < len(sliceNew); i++ {
-		sliceNew[i] = strings.ToUpper(sliceNew[i])
+func Upper(EmptySlice[]string{}){
+	for i := 0; i < len(EmptySlice); i++ {
+		EmptySlice[i] = strings.ToUpper(EmptySlice[i])
 	}
-
-	sort.Strings(sliceNew)
-
-	file, err := os.Create("hw1.txt")
-
-	for i := 0; i < len(sliceNew); i++ {
-
-		text := sliceNew[i]
-		n := len(sliceNew[i])
-
-		if err != nil {
-			fmt.Println("Unable to create file:", err)
-			os.Exit(1)
-		}
-
-		defer file.Close()
-
-		file.WriteString(text)
-		file.WriteString("-")
-		file.WriteString(string(n), '\n')
-
-		fmt.Println("Done.")
-	}
-
+	return EmptySlice
 }
