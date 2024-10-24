@@ -51,7 +51,7 @@ func main() {
 		defer file.Close()
 		file.WriteString(text)
 		file.WriteString("-")
-		file.Write(string(n) + '\n')
+		file.WriteString(string(n), '\n')
 
 		fmt.Println("Done.")
 	}
