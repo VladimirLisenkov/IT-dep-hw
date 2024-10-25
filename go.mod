@@ -1,3 +1,3 @@
-module xx
+module IT-deb-hw
 
 go 1.22.2
