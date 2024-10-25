@@ -31,6 +31,12 @@ func main() {
 	sort.Strings(EmptySlice)
 
 	file, err := os.Create("hw1.txt")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	
+	defer file.Close()
 
 	for i := 0; i < len(EmptySlice); i++ {
 
@@ -47,7 +53,6 @@ func main() {
 		file.WriteString(string(n), '\n')
 	}
 
-	defer file.Close()
 	fmt.Println("Done.")
 }
 
