@@ -9,50 +9,16 @@ import (
 )
 
 func main() {
-	if len(os.Args) <= 1 {
-		fmt.Printf("USAGE : %s <target_filename> \n", os.Args)[0]
-		os.Exit(0)
-	}
+	sliceData := file.ReadString()
 
-	fileName := os.Args[1]( /*file*/ )
+	EmptySlice := sliceData.UniqueValue()
 
-	fileBytes, err := ioutil.ReadFile(fileName)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	
-	SliceData := strings.Split(string(fileBytes), "\n")
-	file.Close()
-
-	EmptySlice := SliceData.Unikalnie_Znacheniya()
 	EmptySlice:=EmptySlice.Upper()
+
 	sort.Strings(EmptySlice)
 
 	file, err := os.Create("hw1.txt")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	
-	defer file.Close()
-
-	for i := 0; i < len(EmptySlice); i++ {
-
-		text := EmptySlice[i]
-		n := len(EmptySlice[i])
-
-		if err != nil {
-			fmt.Println("Unable to create file:", err)
-			os.Exit(1)
-		}
-
-		file.WriteString(text)
-		file.WriteString("-")
-		file.WriteString(string(n), '\n')
-	}
-
-	fmt.Println("Done.")
+	EmptySlice.WriteString()
 }
 
 func UniqueValue(SliceData []string{}){
@@ -78,3 +44,46 @@ func Upper(EmptySlice[]string{}){
 	}
 	return EmptySlice
 }
+
+func ReadString(file){
+	if len(os.Args) <= 1 {
+		fmt.Printf("USAGE : %s <target_filename> \n", os.Args)[0]
+		return 1
+	}
+	fileName := os.Args[1]( /*file*/ )
+
+	fileBytes, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		fmt.Println(err)
+		return 1
+	}
+	
+	sliceData := strings.Split(string(fileBytes), "\n")
+	file.Close()
+	return (sliceData)
+}//???
+
+func WriteString(EmptySlice){
+	if err != nil {
+		fmt.Println(err)
+		return 1
+	}
+	for i := 0; i < len(EmptySlice); i++ {
+
+		text := EmptySlice[i]
+		n := len(EmptySlice[i])
+
+		if err != nil {
+			fmt.Println("Unable to create file:", err)
+			return 1
+		}
+
+		file.WriteString(text)
+		file.WriteString("-")
+		file.WriteString(string(n), '\n')
+	}
+
+	fmt.Println("Done.")
+	defer file.Close()
+	return file	
+}//???
