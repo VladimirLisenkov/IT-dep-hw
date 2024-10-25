@@ -55,7 +55,7 @@ func main() {
 	fmt.Println("Done.")
 }
 
-func Unikalnie_Znacheniya(SliceData []string{}){
+func UniqueValue(SliceData []string{}){
 	for i := 0; i < len(SliceData); i++ {
 		k := 0
 		for g := 0; g < len(sliceData)-1; g++ {
