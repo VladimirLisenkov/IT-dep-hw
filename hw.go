@@ -75,10 +75,8 @@ func WriteString(emptySlice []string) {
 		emptySlice[i] = strings.ToUpper(emptySlice[i])
 	}
 	for i := 0; i < len(emptySlice); i++ {
-
 		text := emptySlice[i]
 		n := len(emptySlice[i])
-
 		file.WriteString(text)
 		file.WriteString("-")
 		file.WriteString(string(n) + "\n")
