@@ -28,8 +28,7 @@ func main() {
 func UniqueValue(sliceData, emptySlice []string) {
 	for i := 0; i < len(sliceData); i++ {
 		k := 0
-		for g := 0; g < len(sliceData)-1; g++ {
-
+		for g := 0; g < len(sliceData); g++ {
 			if sliceData[i] == sliceData[g] {
 				k++
 			}
@@ -44,9 +43,13 @@ func UniqueValue(sliceData, emptySlice []string) {
 
 func ReadString(sliceData []string) {
 	file, err := os.Open("shgfd.txt")
+	if err != nil {
+		err.Error()
+	}
 	scaner, err := os.ReadFile("shgfd.txt")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("Ошибка", err)
+		return
 	}
 
 	defer file.Close()
@@ -55,7 +58,7 @@ func ReadString(sliceData []string) {
 		sliceData = append(sliceData, string(scaner))
 	}
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 	return
 }
@@ -66,20 +69,15 @@ func WriteString(emptySlice []string) {
 		fmt.Println(err)
 		return
 	}
+	defer file.Close()
 
 	for i := 0; i < len(emptySlice); i++ {
 		emptySlice[i] = strings.ToUpper(emptySlice[i])
 	}
-
 	for i := 0; i < len(emptySlice); i++ {
 
 		text := emptySlice[i]
 		n := len(emptySlice[i])
-
-		if err != nil {
-			fmt.Println("Unable to create file:", err)
-			log.Fatal(err)
-		}
 
 		file.WriteString(text)
 		file.WriteString("-")
@@ -87,6 +85,5 @@ func WriteString(emptySlice []string) {
 	}
 
 	fmt.Println("Done.")
-	defer file.Close()
 	return
 }
