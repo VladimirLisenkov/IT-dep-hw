@@ -21,8 +21,9 @@ func main() {
 	for scanner.Scan() {
 		line := strings.Split(scanner.Text(), " ")
 		if line[0] == "Circle" {
+			circle := Circle{Radius: radius}
 		} else if line[0] == "Rectangle" {
-
+			rectangle := Rectangle{Width: width, Height: height}
 		}
 	}
 
